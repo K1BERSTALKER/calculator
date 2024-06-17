@@ -16,7 +16,9 @@ export default function Calculator() {
 
   return (
     <div className="border-[2px] h-[70vh] flex justify-end flex-col w-[30%] rounded-xl p-2 relative">
-      <ThemeChanger className="absolute top-2 left-2 w-6 h-6" />
+      <span className="absolute top-2 left-2 w-6 h-6">
+        <ThemeChanger />
+      </span>
       <div className="flex justify-end flex-col text-right value gap-4">
         <p className="text-md font-medium">{oldValue}</p>
         <input

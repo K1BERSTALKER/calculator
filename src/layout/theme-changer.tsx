@@ -1,16 +1,28 @@
-import React from "react";
+import { Moon, Sun } from "lucide-react";
 
-import { InnerMoon } from "@theme-toggles/react";
-import "@theme-toggles/react/css/InnerMoon.css";
-import { useTheme } from "@/components/themeProvider";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/theme-provider";
+import { useState } from "react";
 
-export default function ThemeChanger(props: React.SVGProps<SVGSVGElement>) {
-  const [toggleTheme, setToggleTheme] = React.useState(true);
+function ThemeChanger() {
+  const [toggleTheme, setToggleTheme] = useState(false);
   const { setTheme } = useTheme();
-  const handleTheme = () => {
+
+  const handleThemeChange = () => {
     setToggleTheme(!toggleTheme);
-    setTheme(toggleTheme ? "dark" : "light");
+    setTheme(toggleTheme ? "light" : "dark");
   };
 
-  return <InnerMoon toggled={toggleTheme} toggle={handleTheme} {...props} />;
+  return (
+    <Button
+      variant="default"
+      size="icon"
+      onClick={handleThemeChange}
+      className="text-primary bg-transparent hover:bg-transparent"
+    >
+      <Sun className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+    </Button>
+  );
 }
+export default ThemeChanger;
